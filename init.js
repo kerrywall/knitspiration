@@ -31,6 +31,8 @@ knitApp.getPhotos = function() {
 			sort: 'interesting_desc',
 			// public photos only
 			privacy_filter: 1,
+			// let's try to keep this clean
+			safe_search: 1,
 			// we don't need no xml
 			format: 'json'
 		},

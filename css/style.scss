@@ -122,11 +122,10 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 		p {
 			margin: 0;
 		}
-		@include column(4);
+		@include column(8);
 	}
 	.share {
 		@include column(4);
-		@include push(4);
 	}
  }
 
@@ -134,4 +133,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 
  @media (max-width: 1024px) {
   .desktop {display: none;}
+  .credits, .share {
+  	@include column(12);
+  }
 }

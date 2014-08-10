@@ -238,7 +238,7 @@ header {
   .wrapper .credits {
     display: inline;
     float: left;
-    width: 31.25%;
+    width: 64.58333%;
     margin: 0 1.04167%; }
     .wrapper .credits p {
       margin: 0; }
@@ -246,9 +246,14 @@ header {
     display: inline;
     float: left;
     width: 31.25%;
-    margin: 0 1.04167%;
-    margin-left: 34.375%; }
+    margin: 0 1.04167%; }
 
 @media (max-width: 1024px) {
   .desktop {
-    display: none; } }
+    display: none; }
+
+  .credits, .share {
+    display: inline;
+    float: left;
+    width: 97.91667%;
+    margin: 0 1.04167%; } }
