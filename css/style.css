@@ -252,8 +252,13 @@ header {
   .desktop {
     display: none; }
 
-  .credits, .share {
+  .wrapper .credits, .wrapper .share {
     display: inline;
     float: left;
     width: 97.91667%;
-    margin: 0 1.04167%; } }
+    margin: 0 1.04167%; }
+  .wrapper .share {
+    margin-top: 20px; } }
+@media (max-width: 460px) {
+  .wrapper .photo {
+    width: 80%; } }

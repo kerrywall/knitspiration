@@ -24,7 +24,7 @@ knitApp.getPhotos = function() {
 			method: 'flickr.photos.search',
 			api_key: knitApp.publicKey,
 			// search tags for "knitting" but not other stuff we don't want
-			tags: 'knitting, -factory, -crochet, -pattern, -doll, -penis, -swastika,' + query,
+			tags: 'knitting, -factory, -crochet, -pattern, -doll, -penis, -swastika, ' + query,
 			// (unless tag_mode is set to 'all,' flickr looks for 'any')
 			tag_mode: 'all',
 			// sort by 'interestingness' in descending order: most "interesting" first
@@ -105,13 +105,15 @@ knitApp.displayPhotos = function(data) {
 		});
 
 		// run a test to see whether the poster actually gave the image a filename
-		if (thisPhoto.title.indexOf('IMG') === 0 || thisPhoto.title.indexOf('DSC') === 0 || thisPhoto.title.indexOf('img') === 0 || thisPhoto.title.indexOf('/([P])\d+/g+') === 0) {
+		var pName = /([P])\d+/;
+		var numberName = /\d+/;
+
+		if (thisPhoto.title.indexOf('IMG') === 0 || thisPhoto.title.indexOf('DSC') === 0 || thisPhoto.title.indexOf('img') === 0 || pName.exec(thisPhoto.title) !== null || numberName.exec(thisPhoto.title) !== null) {
 
 			// if not, and it's a generic camera-bestowed filename, skip the Ravelry search link because it's useless
 			$('.inspiration').append(resultText,img,linkToFlickrText);
 
 		} else {
-			console.log(thisPhoto.title.indexOf('/([P])\d+/g+'));
 			// if so, put all the data above into the page, even the Ravelry search link
 			$('.inspiration').append(resultText,img,linkToFlickrText,titleLinkString);
 		}

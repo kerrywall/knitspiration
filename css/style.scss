@@ -133,7 +133,20 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 
  @media (max-width: 1024px) {
   .desktop {display: none;}
-  .credits, .share {
-  	@include column(12);
+  .wrapper {
+	.credits, .share {
+		@include column(12);
+	}
+	.share {
+		margin-top: 20px;
+	}
   }
+}
+
+@media (max-width: 460px) {
+	.wrapper {
+		.photo {
+			width: 80%;
+		}
+	}
 }
