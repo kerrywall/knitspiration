@@ -24,7 +24,7 @@ knitApp.getPhotos = function() {
 			method: 'flickr.photos.search',
 			api_key: knitApp.publicKey,
 			// search tags for "knitting" but not other stuff we don't want
-			tags: 'knitting, -factory, -crochet, -pattern, -doll,' + query,
+			tags: 'knitting, -factory, -crochet, -pattern, -doll, -penis' + query,
 			// (unless tag_mode is set to 'all,' flickr looks for 'any')
 			tag_mode: 'all',
 			// sort by 'interestingness' in descending order: most "interesting" first
