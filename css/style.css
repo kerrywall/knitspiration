@@ -234,18 +234,18 @@ header {
             transform: rotate(3deg);
     margin-top: 5px; }
   .wrapper .credits, .wrapper .share {
-    font-size: 14px; }
+    font-size: 12px; }
   .wrapper .credits {
     display: inline;
     float: left;
-    width: 64.58333%;
+    width: 81.25%;
     margin: 0 1.04167%; }
     .wrapper .credits p {
       margin: 0; }
   .wrapper .share {
     display: inline;
     float: left;
-    width: 31.25%;
+    width: 14.58333%;
     margin: 0 1.04167%; }
 
 @media (max-width: 1024px) {

@@ -116,16 +116,16 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 	}
 
 	.credits, .share {
-		font-size: 14px;
+		font-size: 12px;
 	}
 	.credits {
 		p {
 			margin: 0;
 		}
-		@include column(8);
+		@include column(10);
 	}
 	.share {
-		@include column(4);
+		@include column(2);
 	}
  }
 
