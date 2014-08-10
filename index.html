@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>yoooooo bitches</title>
+	<link href='http://fonts.googleapis.com/css?family=Kranky' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<h2>yo, stitches!</h2>
+			<h1>knitting inspiration from flickr</h1>
+			<p class="intro">Search for something you like. <span class="desktop">Hover to take a closer look on desktop.</span></p>
+		</header>
+		<section id="inspiration" class="inspiration"></section>
+		<section class="search">
+			<p class="searchyText">I want to see an awesome knitting thing that's also:</p>
+			<form id="searchy" action="">
+				<input class="searchy" type="text" name="searchy" id="userValue" placeholder="... a colour, pattern, yarn weight or anything at all">		
+				<input type="submit" class="submit" name="searchy" value="inspire me!">
+			</form>	
+		</section>
+		<div class="credits">
+			<p>coded with love by <a href="http://kerrywall.com" target="_blank">Kerry</a> using the <a href="http://flickr.com/services/api/" target="_blank">Flickr API</a>.</p>
+		</div>
+		<div class="share">
+			<a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="jquery.loupe.min.js"></script>
+	<script src="init.js"></script>
+
+	<script>
+		$('#zoom').loupe();
+	</script>
+</body>
+</html>
