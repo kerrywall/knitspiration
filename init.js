@@ -31,8 +31,8 @@ knitApp.getPhotos = function() {
 			sort: 'interesting_desc',
 			// public photos only
 			privacy_filter: 1,
-			// let's try to keep this clean
-			safe_search: "1",
+			// let's try to keep this clean (ALTHOUGH all that unfortunate knitted gentalia is apparently rated 'safe' by Flickr, so we have to remove certain terms in the tags parameter)
+			safe_search: 1,
 			// we don't need no xml
 			format: 'json'
 		},
@@ -48,7 +48,7 @@ knitApp.getPhotos = function() {
 
 knitApp.displayPhotos = function(data) {
 
-	// if there are results, do this stuff
+	// check to see whether there are results from that search
 	if (data.length !== 0) {
 
 		// run this code if the results contain more than one photo
@@ -57,37 +57,39 @@ knitApp.displayPhotos = function(data) {
 			// generate a random number and use it to pick a random photo from the results object
 			var photoID = Math.floor(Math.random() * data.length);
 			
-		// run this code if there's only one result
+		// run *this* code if there's only one result
 		} else if (data.length === 1) {
-
+			
 			// the ID of the lone photo in the zero-based index system will be '0,' so...
 			var photoID = 0;
-
 		}
 
 		var thisPhoto = data[photoID];
+		var thisPhotoTitle = thisPhoto.title;
 
-		// assign the data to variables
-		var img = $('<img>').attr('src', 'https://farm'+ thisPhoto.farm + '.staticflickr.com/' + thisPhoto.server + '/' + thisPhoto.id + '_' + thisPhoto.secret + '.jpg').addClass('photo');
+		// use data from the results to create components to be injected into the page
+			var img = $('<img>').attr('src', 'https://farm'+ thisPhoto.farm + '.staticflickr.com/' + thisPhoto.server + '/' + thisPhoto.id + '_' + thisPhoto.secret + '.jpg').addClass('photo'); /* image url */
 		
-		var titleSearch = thisPhoto.title.slice(" ");
-		var titleLink = $('<a>').attr({'href':'https://www.google.ca/search?q=' + titleSearch + ' site:ravelry.com', 'target': '_blank'}).text('Try a Ravelry search using that text?').addClass('patternLink');
-		var searchText = 'Want to know more? Well, the original poster called this photo "' + thisPhoto.title + '." ';
+			var titleSearch = thisPhotoTitle.slice(" "); /* search string without commas */
+		
+			var titleLink = $('<a>').attr({'href':'https://www.google.ca/search?q=' + titleSearch + ' site:ravelry.com', 'target': '_blank'}).text('Try a Ravelry search using that text?').addClass('patternLink'); /* <a> tag search query */
 
-		var photoPage = 'https://www.flickr.com/photos/' + thisPhoto.owner + '/' + thisPhoto.id;
-		var linkToFlickr = '(See the photo on Flickr.)';
+			var searchText = 'Want to know more? Well, the original poster called this photo "' + thisPhotoTitle + '." '; /* search query context */
 
-		var linkToFlickrText = $('<a>').text(linkToFlickr).attr({'href': photoPage, 'target':'_blank'}).addClass('onFlickr');
+			// components for a link back to the photo page, as required by the API TOS
+			var photoPage = 'https://www.flickr.com/photos/' + thisPhoto.owner + '/' + thisPhoto.id;
+			var linkToFlickr = '(See the photo on Flickr.)';
+			var linkToFlickrText = $('<a>').text(linkToFlickr).attr({'href': photoPage, 'target':'_blank'}).addClass('onFlickr');
+			var titleLinkString = $('<p>').text(searchText).append(titleLink);
 
-		var titleLinkString = $('<p>').text(searchText).append(titleLink);
-
+		// show a different response message if the user didn't submit a query
 		if (query !== "") {
 			var resultText = $('<h3>').text('You asked for "' + query + '." Flickr rummaged around and found:');
 		} else {
 			var resultText = $('<h3>').text('You didn\'t submit a search term, but Flickr was a real good sport and found:');
 		}
 
-		// get the image sizes
+		// we need to run a separate APi call with a separate Flickr method to get the image sizes
 		$.ajax({
 			url: 'https://api.flickr.com/services/rest/?jsoncallback=?',
 			method: 'GET',
@@ -104,11 +106,13 @@ knitApp.displayPhotos = function(data) {
 			}
 		});
 
-		// run a test to see whether the poster actually gave the image a filename
+		// run a test to see whether the poster actually gave the image a filename (or just left the camera default)
+
+		// (check it, Drew, I added some regex)
 		var pName = /([P])\d+/;
 		var numberName = /\d+/;
 
-		if (thisPhoto.title.indexOf('IMG') === 0 || thisPhoto.title.indexOf('DSC') === 0 || thisPhoto.title.indexOf('img') === 0 || pName.exec(thisPhoto.title) !== null || numberName.exec(thisPhoto.title) !== null) {
+		if (thisPhoto.title.indexOf('IMG') === 0 || thisPhoto.title.indexOf('DSC') === 0 || thisPhoto.title.indexOf('img') === 0 || pName.exec(thisPhoto.title) !== null || thisPhoto.title.indexOf(numberName) === 0) {
 
 			// if not, and it's a generic camera-bestowed filename, skip the Ravelry search link because it's useless
 			$('.inspiration').append(resultText,img,linkToFlickrText);

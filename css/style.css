@@ -162,7 +162,12 @@ header {
     font-size: 60px;
     font-family: 'Kranky', cursive;
     margin: 0;
-    font-weight: lighter; }
+    font-weight: lighter;
+    -webkit-transition: color 1s ease;
+            transition: color 1s ease; }
+    header h2:hover {
+      color: #148f77;
+      font-weight: lighter; }
   header h1 {
     text-transform: uppercase;
     font-weight: lighter;
@@ -176,8 +181,8 @@ header {
   .wrapper a {
     color: #1abc9c;
     text-decoration: underline;
-    -webkit-transition: all 1s ease;
-            transition: all 1s ease; }
+    -webkit-transition: color 1s ease;
+            transition: color 1s ease; }
     .wrapper a:hover {
       color: #0e6252;
       text-decoration: none; }

@@ -44,6 +44,11 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
  		font-family: 'Kranky', cursive;
  		margin: 0;
  		font-weight: lighter;
+ 		transition: color 1s ease;
+ 		&:hover {
+ 			color: darken($turquoise, 10%);
+ 			font-weight: lighter;
+ 		} 
  	}
  	h1 {
  		text-transform: uppercase;
@@ -61,7 +66,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
  	a {
  		color: $turquoise;
  		text-decoration: underline;
- 		transition: all 1s ease;
+ 		transition: color 1s ease;
  		&:hover {
  			color: darken($turquoise, 20%);
  			text-decoration: none;
